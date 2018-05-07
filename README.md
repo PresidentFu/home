@@ -20,10 +20,12 @@ localStorage 方法存储的数据没有时间限制。第二天、第二周或�
 
 实例
 
+```
     <script type="text/javascript">
     localStorage.lastname="Smith";
     document.write(localStorage.lastname);
     </script>
+```
 
 下面的例子对用户访问页面的次数进行计数：
 

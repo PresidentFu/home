@@ -1,39 +1,71 @@
-## Welcome to GitHub Pages
+在客户端存储数据
+HTML5 提供了两种在客户端存储数据的新方法：
 
-You can use the [editor on GitHub](https://github.com/PresidentFu/qmzbe.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+> localStorage - 没有时间限制的数据存储
+sessionStorage - 针对一个 session 的数据存储
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+之前，这些都是由 cookie 完成的。但是 cookie 不适合大量数据的存储，因为它们由每个对服务器的请求来传递，这使得 cookie 速度很慢而且效率也不高。
 
-https://github.com/PresidentFu/qmzbe.github.io/blob/master/1
+在 HTML5 中，数据不是由每个服务器请求传递的，而是只有在请求时使用数据。它使在不影响网站性能的情况下存储大量数据成为可能。
 
-### Markdown
+对于不同的网站，数据存储于不同的区域，并且一个网站只能访问其自身的数据。
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+HTML5 使用 JavaScript 来存储和访问数据。
 
-```markdown
-Syntax highlighted code block
+## localStorage 方法
 
-# Header 1
-## Header 2
-### Header 3
+localStorage 方法存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。
 
-- Bulleted
-- List
+如何创建和访问 localStorage：
 
-1. Numbered
-2. List
+实例
 
-**Bold** and _Italic_ and `Code` text
+    <script type="text/javascript">
+    localStorage.lastname="Smith";
+    document.write(localStorage.lastname);
+    </script>
 
-[Link](url) and ![Image](src)
-```
+下面的例子对用户访问页面的次数进行计数：
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+实例
 
-### Jekyll Themes
+    <script type="text/javascript">
+    if (localStorage.pagecount)
+      {
+      localStorage.pagecount=Number(localStorage.pagecount) +1;
+      }
+    else
+      {
+      localStorage.pagecount=1;
+      }
+    document.write("Visits "+ localStorage.pagecount + " time(s).");
+    </script>
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/PresidentFu/qmzbe.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## sessionStorage 方法
 
-### Support or Contact
+sessionStorage 方法针对一个 session 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+如何创建并访问一个 sessionStorage：
+
+实例
+
+    <script type="text/javascript">
+    sessionStorage.lastname="Smith";
+    document.write(sessionStorage.lastname);
+    </script>
+
+下面的例子对用户在当前 session 中访问页面的次数进行计数：
+
+实例
+    
+    <script type="text/javascript">
+    if (sessionStorage.pagecount)
+      {
+      sessionStorage.pagecount=Number(sessionStorage.pagecount) +1;
+      }
+    else
+      {
+      sessionStorage.pagecount=1;
+      }
+    document.write("Visits "+sessionStorage.pagecount+" time(s) this session.");
+    </script>
